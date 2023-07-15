@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:receta_app/app.dart';
 import 'package:receta_app/recipe.dart';
+import 'package:receta_app/recipe_detail.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -22,7 +23,16 @@ class _HomePageState extends State<HomePage> {
         child: ListView.builder(
           itemCount: Recipe.samples.length,
           itemBuilder: (BuildContext context, int index) {
-            return RecipeCard(recipe: Recipe.samples[index]);
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return RecipeDetail(recipe: Recipe.samples[index]);
+                  },
+                ));
+              },
+              child: RecipeCard(recipe: Recipe.samples[index]),
+            );
           },
         ),
       ),
@@ -49,7 +59,7 @@ class RecipeCard extends StatelessWidget {
           ),
           Text(
             recipe.label,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto'),
