@@ -28,13 +28,25 @@ class _RecipeDetailState extends State<RecipeDetail> {
             const SizedBox(
               height: 14,
             ),
-            const Text('ingredientes'),
+            const Text(
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Roboto'),
+                'Ingredientes'),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
               child: ListView.builder(
                   itemCount: widget.recipe.ingredients.length,
                   itemBuilder: (BuildContext context, index) {
                     final ingredient = widget.recipe.ingredients[index];
                     return Text(
+                        style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: 'Roboto'),
                         '${ingredient.quantity * _slideValue} ${ingredient.measure} ${ingredient.name}');
                   }),
             ),
